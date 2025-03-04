@@ -1,14 +1,12 @@
-import { render } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import CurrencyForm from './CurrencyForm';
-import { screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 
-describe('Component CurrencyForm', () => {
+describe("Component CurrencyForm", () => {
     it('should render without crashing', () => {
         render(<CurrencyForm action={() => { }} />);
     });
-
 
     it('should run action callback with proper data on form submit', () => {
 
@@ -45,7 +43,6 @@ describe('Component CurrencyForm', () => {
             expect(action).toHaveBeenCalledTimes(1);
             expect(action).toHaveBeenCalledWith({ amount: parseInt(testObj.amount), from: testObj.from, to: testObj.to });
 
-            // unmount component
             cleanup();
         }
 

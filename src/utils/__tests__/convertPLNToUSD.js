@@ -19,17 +19,28 @@ it('should return NaN when input is empty', () => {
     expect(convertPLNToUSD()).toBeNaN();
 });
 
+it("should return NaN for string input", () => {
+    expect(convertPLNToUSD("1")).toBeNaN();
+    expect(convertPLNToUSD("")).toBeNaN();
+    expect(convertPLNToUSD("4.9")).toBeNaN();
+    expect(convertPLNToUSD("word")).toBeNaN();
+    expect(convertPLNToUSD("word")).toBeNaN();
+});
+
 it('should return "Error" when input is different than number and string', () => {
     expect(convertPLNToUSD({})).toBe('Error');
     expect(convertPLNToUSD([])).toBe('Error');
     expect(convertPLNToUSD(null)).toBe('Error');
+    expect(convertPLNToUSD(true)).toBe('Error');
     expect(convertPLNToUSD(function () { })).toBe('Error');
 });
 
 it('should return zero when input is lower than zero', () => {
     expect(convertPLNToUSD(-1)).toBe('$0.00');
     expect(convertPLNToUSD(-2)).toBe('$0.00');
+    expect(convertPLNToUSD(-0.0123)).toBe("$0.00");
     expect(convertPLNToUSD(-56)).toBe('$0.00');
 });
+
 
 
