@@ -8,8 +8,8 @@ import styles from './ResultBox.module.scss';
 const ResultBox = ({ from, to, amount }) => {
 
   const convertedAmount = useMemo(() => {
-    if(from === 'USD' && to === 'PLN') return convertUSDToPLN(amount);
-    if(from === 'PLN' && to === 'USD') return convertPLNToUSD(amount);
+    if (from === 'USD' && to === 'PLN') return convertUSDToPLN(amount);
+    if (from === 'PLN' && to === 'USD') return convertPLNToUSD(amount);
     return formatAmountInCurrency(amount, from);
   }, [from, to, amount]);
 
@@ -18,6 +18,10 @@ const ResultBox = ({ from, to, amount }) => {
   return (
     <div className={styles.result}>
       {formattedAmount} = {convertedAmount}
+      <div data-testid="resultDiv" className={styles.result}>
+        {amount < 0 && 'Wrong value...'}
+        {amount > 0 && formattedAmount + ' = ' + convertedAmount}
+      </div>
     </div>
   );
 };
