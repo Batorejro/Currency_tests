@@ -5,7 +5,7 @@ import ResultBox from './../ResultBox/ResultBox';
 const CurrencyBox = () => {
   const [data, setData] = useState({
     amount: 0,
-    from: 'Zł',
+    from: 'PLN',
     to: '$'
   });
 
@@ -16,7 +16,7 @@ const CurrencyBox = () => {
   return (
     <main>
       <CurrencyForm action={handleDataChange} />
-      { data.amount ? <ResultBox {...data} /> : null }
+      {data.amount ? <ResultBox {...data} /> : null}
     </main>
   );
 };
